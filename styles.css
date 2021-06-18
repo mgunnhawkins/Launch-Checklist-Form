@@ -1,6 +1,8 @@
-h1 {
+h1, h2 {
     text-align: center;
 }
+
+
 
 div {
     text-align: left;
@@ -31,15 +33,23 @@ div {
 #missionTarget img {
     max-width: 40%;
     max-height: 250px;
+    text-align: center;
 }
 
 #missionTarget {
     background-color: #ECF0F1;
-    text-align: center;
+    text-align: left;
     margin: 50px auto;
     width: 50%;
     border: 3px solid black;
     padding: 10px;
+}
+
+.center-image{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
 }
 
 button {
@@ -47,7 +57,7 @@ button {
     border: none;
     color: white;
     border-radius: 8px;
-    width: 25%;
+    width: 40%;
     height: 30px;
     margin: 10px 0;
 }

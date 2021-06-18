@@ -1,4 +1,22 @@
 
+fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response){
+   response.json().then( function(json){
+      const div = document.getElementById("missionTarget");
+      let randomPlanet = Math.floor(Math.random() * json.length);
+      div.innerHTML = `
+         <h2>Mission Destination</h2>
+         <ol>
+            <li>Name: ${json[randomPlanet].name}</li>
+            <li>Diameter: ${json[randomPlanet].diameter}</li>
+            <li>Star: ${json[randomPlanet].star}</li>
+            <li>Distance from Earth: ${json[randomPlanet].distance}</li>
+            <li>Number of Moons: ${json[randomPlanet].moons}</li>
+         </ol>
+         <img class="center-image" src="${json[randomPlanet].image}"></img>
+      `
+   });
+   
+});
 window.addEventListener("load", function () {
    let form = document.querySelector('form');
    const pilotNameInput = document.querySelector("input[name=pilotName]");
@@ -64,19 +82,10 @@ window.addEventListener("load", function () {
 });
 
 //notes
-//do visibility after data is set
-//if you have your code where oyu have a bunch of validators you need a way to track if it passed everything before you have the rest of the code moving forward
 
-//The list of shuttle requirements (a list means that it is an array), the div with the id faultyItems, should be updated if something is not ready for launch.
+
+
 
 /* This block of code shows how to format the HTML once you fetch some planetary JSON!
-<h2>Mission Destination</h2>
-<ol>
-   <li>Name: ${}</li>
-   <li>Diameter: ${}</li>
-   <li>Star: ${}</li>
-   <li>Distance from Earth: ${}</li>
-   <li>Number of Moons: ${}</li>
-</ol>
-<img src="${}">
+
 */
