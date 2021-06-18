@@ -6,7 +6,8 @@ window.addEventListener("load", function () {
    const fuelLevelInput = document.querySelector("input[name='fuelLevel']");
    const cargoMassInput = document.querySelector("input[name='cargoMass']");
    const inputs = document.querySelectorAll("input");
-   const faultyItems = document.getElementById("faultyItems");
+   const faultyItems = document.getElementsByClassName("faultyItems");
+   console.log(faultyItems)
    let pilotStatus = document.getElementById("pilotStatus");
    let copilotStatus = document.getElementById("copilotStatus");
 
@@ -41,15 +42,23 @@ window.addEventListener("load", function () {
             event.preventDefault()
          }
       })
-      //pilotStatus.innerHTML = `Pilot ${pilotNameInput.value} is ready for Launch.`
-      //copilotStatus.innerHTML = `Co-pilot ${copilotNameInput.value} is ready for launch`
-      console.log(pilotStatus.innerHTML,copilotStatus.innerHTML);
+
+         function updateShuttleRequirements(){
+            
+         }
+         faultyItems.style.visibility = "visible"
+         console.log(faultyItems.style.visibility);
+         pilotStatus.innerHTML = `Pilot ${pilotNameInput.value} is ready for Launch.`
+         copilotStatus.innerHTML = `Co-pilot ${copilotNameInput.value} is ready for launch`
+         console.log(pilotStatus.innerHTML,copilotStatus.innerHTML);
+         event.preventDefault()
       
+         
    });// end of submit add event listener
 });
 
 
-//The list of shuttle requirements, the div with the id faultyItems, should be updated if something is not ready for launch.
+//The list of shuttle requirements (a list means that it is an array), the div with the id faultyItems, should be updated if something is not ready for launch.
 
 /* This block of code shows how to format the HTML once you fetch some planetary JSON!
 <h2>Mission Destination</h2>
