@@ -9,11 +9,13 @@ window.addEventListener("load", function () {
    const faultyItems = document.getElementById("faultyItems");
    let pilotStatus = document.getElementById("pilotStatus");
    let copilotStatus = document.getElementById("copilotStatus");
-   let launchStatus = this.document.getElementById("launchStatus");
+   let launchStatus = document.getElementById("launchStatus");
+   let fuelStatus = document.getElementById("fuelStatus");
+   let cargoStatus = document.getElementById("cargoStatus");
 
    form.addEventListener("submit", function (event) {
       faultyItems.style.visibility.value = "visible"
-
+      event.preventDefault();
       if (!isNaN(pilotNameInput.value)) {
          alert("Please try again.  Pilot Name field must include text.");
       } 
@@ -43,7 +45,7 @@ window.addEventListener("load", function () {
          faultyItems.style.visibility = "visible"
       }
       
-      if (cargoMass > 10000) {
+      if (cargoMassInput > 10000) {
          cargoStatus.innerHTML - "There is too much mass for the shuttle to take off"
          launchStatus.innerHTML = "Shuttle not Ready for Launch"
          launchStatus.style.color = "red"
