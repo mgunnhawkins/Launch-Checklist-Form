@@ -14,7 +14,7 @@ window.addEventListener("load", function () {
    let cargoStatus = document.getElementById("cargoStatus");
 
    form.addEventListener("submit", function (event) {
-      faultyItems.style.visibility.value = "visible"
+      
       event.preventDefault();
       if (!isNaN(pilotNameInput.value)) {
          alert("Please try again.  Pilot Name field must include text.");
@@ -35,27 +35,30 @@ window.addEventListener("load", function () {
          }
       })//end of form validation
 
-      pilotStatus.innerHTML = `Pilot ${pilotNameInput.value} is ready for Launch.`
-      copilotStatus.innerHTML = `Co-pilot ${copilotNameInput.value} is ready for launch`
-
-      if (fuelLevelInput < 10000){
-         fuelStatus.innerHTML = "There is not enough fuel for the journey."
-         launchStatus.innerHTML = "Shuttle not Ready for Launch"
-         launchStatus.style.color = "red"
-         faultyItems.style.visibility = "visible"
-      }
+      pilotStatus.innerHTML = `Pilot ${pilotNameInput.value} is ready for launch.`
+      copilotStatus.innerHTML = `Co-pilot ${copilotNameInput.value} is ready for launch.`
       
-      if (cargoMassInput > 10000) {
-         cargoStatus.innerHTML - "There is too much mass for the shuttle to take off"
+      if (fuelLevelInput.value < 10000){
+         fuelStatus.innerHTML = "There is not enough fuel for the journey."
+         fuelStatus.style.color = "red"
          launchStatus.innerHTML = "Shuttle not Ready for Launch"
          launchStatus.style.color = "red"
-         faultyItems.style.visibility = "visible"
-      }
+         
+      } 
+      
+      if (cargoMassInput.value > 10000) {
+         cargoStatus.innerHTML = "There is too much mass for the shuttle to take off."
+         cargoStatus.style.color = "red"
+         launchStatus.innerHTML = "Shuttle not Ready for Launch"
+         launchStatus.style.color = "red"
+         console.log(cargoMassInput);
+      } 
 
-      if (fuelLevelInput >= 10000 && cargoMass <= 10000){
+      if (fuelLevelInput.value >= 10000 && cargoMassInput.value <= 10000){
          launchStatus.style.color = "green"
          launchStatus.innerHTML = "Shuttle is Ready for Launch"
       }
+      faultyItems.style.visibility = "visible"
             
    });// end of submit add event listener
 });
