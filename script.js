@@ -32,27 +32,35 @@ window.addEventListener("load", function () {
    let cargoStatus = document.getElementById("cargoStatus");
 
    form.addEventListener("submit", function (event) {
-      
-      event.preventDefault();
+      event.preventDefault();//DO NOT MOVE THIS!!  PREVENTS MAKING AN HTTP REQUEST TO THE SERVER
+      for (const input of inputs) {
+         if (input.value == ""){
+            alert("All fields required!");
+            return false;  
+         }
+      };
+
+      let fieldValues = true
       if (!isNaN(pilotNameInput.value)) {
          alert("Please try again.  Pilot Name field must include text.");
+         fieldValues = false;
       } 
       if (!isNaN(copilotNameInput.value)) {
-         alert("Please try again.  CoPilot Name field must include text.");  
+         alert("Please try again.  CoPilot Name field must include text."); 
+         fieldValues = false; 
+      }
+      if (isNaN(Number(fuelLevelInput.value))) {
+         alert("Please try again.  Fuel Level must be a number.");
+         fieldValues = false;
       } 
-      if (isNaN(fuelLevelInput.value)) {
-         alert("Please try again.  Field must be a number.");
+      if (isNaN(Number(cargoMassInput.value))) {
+         alert("Please try again.  Cargo Mass must be a number."); 
+         fieldValues = false;
       }
-      if (isNaN(cargoMassInput.value)) {
-         alert("Please try again.  Field must be a number."); 
+      if (!fieldValues){
+         return false;
       }
-
-      inputs.forEach(input => {
-         if (input.value == ""){
-            alert("All fields required!");  
-         }
-      })//end of form validation
-
+      faultyItems.style.visibility = "visible"
       pilotStatus.innerHTML = `Pilot ${pilotNameInput.value} is ready for launch.`
       copilotStatus.innerHTML = `Co-pilot ${copilotNameInput.value} is ready for launch.`
       
@@ -73,13 +81,20 @@ window.addEventListener("load", function () {
       } 
 
       if (fuelLevelInput.value >= 10000 && cargoMassInput.value <= 10000){
+         fuelStatus.style.color = "black"
+         cargoStatus.style.color = "black"
          launchStatus.style.color = "green"
          launchStatus.innerHTML = "Shuttle is Ready for Launch"
+         
       }
-      faultyItems.style.visibility = "visible"
+         
+   });//end of form validation
+
+
+      
             
-   });// end of submit add event listener
-});
+
+});// end of submit add event listener
 
 //notes
 
