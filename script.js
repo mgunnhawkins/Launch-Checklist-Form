@@ -60,33 +60,51 @@ window.addEventListener("load", function () {
       if (!fieldValues){
          return false;
       }
+
+   
       faultyItems.style.visibility = "visible"
       pilotStatus.innerHTML = `Pilot ${pilotNameInput.value} is ready for launch.`
       copilotStatus.innerHTML = `Co-pilot ${copilotNameInput.value} is ready for launch.`
       
-      if (fuelLevelInput.value < 10000){
+      let readyForLaunch = true
+      //fuel level needs to be above or equal to 10000
+         //Fuel level high enough for launch - keep this black
+         //There is not enough fuel for the journey. - turn this red
+      if (fuelLevelInput.value >= 10000){
+         fuelStatus.innerHTML = "Fuel level high enough for launch."
+         fuelStatus.style.color = "black"
+      } else {
          fuelStatus.innerHTML = "There is not enough fuel for the journey."
          fuelStatus.style.color = "red"
-         launchStatus.innerHTML = "Shuttle not Ready for Launch"
-         launchStatus.style.color = "red"
-         
-      } 
-      
-      if (cargoMassInput.value > 10000) {
+         readyForLaunch = false
+      }
+
+
+
+      //cargo mass needs to be below 10000
+         //Cargo mass low enough for launch
+         //"There is too much mass for the shuttle to take off."
+      if (cargoMassInput.value < 10000){
+         cargoStatus.innerHTML = "Cargo mass low enough for launch."
+         cargoStatus.style.color = "black"
+      } else {
          cargoStatus.innerHTML = "There is too much mass for the shuttle to take off."
          cargoStatus.style.color = "red"
-         launchStatus.innerHTML = "Shuttle not Ready for Launch"
-         launchStatus.style.color = "red"
-         console.log(cargoMassInput);
-      } 
+         readyForLaunch = false
+      }
 
-      if (fuelLevelInput.value >= 10000 && cargoMassInput.value <= 10000){
-         fuelStatus.style.color = "black"
-         cargoStatus.style.color = "black"
+      //title should say shuttle not ready for launch if anything is false
+      if (readyForLaunch == true){
          launchStatus.style.color = "green"
          launchStatus.innerHTML = "Shuttle is Ready for Launch"
-         
+      } else {
+         launchStatus.innerHTML = "Shuttle not Ready for Launch"
+         launchStatus.style.color = "red"
       }
+
+      
+       
+ 
          
    });//end of form validation
 
